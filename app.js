@@ -72,6 +72,22 @@ app.get('/blogs/:id', function(req, res){
     });
 });
 
+//EDIT ROUTE
+app.get('/blogs/:id/edit', function(req, res){
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if(err){
+            res.redirect('/blogs');
+        } else {
+            res.render('edit.ejs', {blog: foundBlog});
+        }
+    });
+});
+
+//UPDATE ROUTE
+app.put('/blogs/:id', function(req, res){
+    res.send("Update Route!");
+});
+
 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("SERVER IS RUNNING!");
